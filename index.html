@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>CS 20 HW 5</title>
+</head>
+<body>
+  <form>
+    <label for="num1">Number 1</label>
+    <br>
+    <input type="number" id="num1" name="num1_input">
+    <br>
+    <label for="num2">Number 2</label>
+    <br>
+    <input type="number" id="num2" name="num2_input">
+    <br>
+    <button type="button" onclick="buttonoutput()">Find amicable pair</button>
+  </form>
+  
+  <script>
+  var n;
+  function divSum(n) {
+     
+    // Sum of divisors
+    let result = 0;
+ 
+    // find all divisors for num
+    for (let i = 2; i <= Math.sqrt(n); i++)
+    {
+         
+        // if 'i' is divisor of 'n'
+        if (n % i == 0)
+        {
+             
+            // if both divisors are same
+            // then add it once else add
+            // both
+            if (i == (n / i))
+                result += i;
+            else
+                result += (i + n / i);
+        }
+    }
+ 
+    // Add 1 and n to result
+    // as above loop considers
+    // proper divisors greater
+    // than 1.
+    return (result + 1);
+  }
+    
+  // Returns true if x and y
+  // are Amicable else false.
+  function areAmicable(num1, num2) {
+    if (divSum(num1) != num2)
+        return false;
+         
+    return (divSum(num2) == num1);
+ }
+ 
+  function buttonoutput() {
+  	var num1 = document.getElementById('num1').value; 
+  	var num2 = document.getElementById('num2').value; 
+  	if (areAmicable (num1, num2)) {
+        	document.getElementById("amicabledisplay").innerHTML = "The numbers: " + num1 + " and " + num2 + " are amicable";
+  	} else {
+          	document.getElementById("amicabledisplay").innerHTML = "The numbers: " + num1 + " and " + num2 + " are not amicable";
+  	}
+  }
+  </script>
+  <div id='amicabledisplay'></div>
+  <div>arraytime!</div>
+</body>
+</html>
