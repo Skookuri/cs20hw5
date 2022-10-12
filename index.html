@@ -4,6 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>CS 20 HW 5</title>
+  <style>
+  	ul {
+    	list-style-type: none;
+    }
+  </style>
 </head>
 <body>
   <form>
@@ -20,6 +25,8 @@
   
   <script>
   var n;
+  // Function to calculate sum of all
+  // proper divisors of a given number
   function divSum(n) {
      
     // Sum of divisors
@@ -32,7 +39,6 @@
         // if 'i' is divisor of 'n'
         if (n % i == 0)
         {
-             
             // if both divisors are same
             // then add it once else add
             // both
@@ -67,9 +73,40 @@
   	} else {
           	document.getElementById("amicabledisplay").innerHTML = "The numbers: " + num1 + " and " + num2 + " are not amicable";
   	}
+    
+    arrayoutput(num1, num2);
+    
+  }
+  
+  
+  function isAFactor(num, arraything) {
+    for (potentialfactor = 0; potentialfactor <= num; potentialfactor++) {
+    	if (num % potentialfactor == 0) {
+        	arraything.push(potentialfactor);
+        	potentialfactor++;
+        }
+    }
+  }
+  
+  
+  
+  function arrayoutput(num1, num2) {
+  	let arraything = [];
+  	let arraything1 = [];
+  	let arraything2 = [];
+  	document.getElementById("arraydisplay").innerHTML = "";
+  	isAFactor(num1, arraything1);
+    isAFactor(num2, arraything2);
+  	arraything = arraything1.concat(arraything2);
+    for (i=0; i < arraything.length; i++) {
+		document.getElementById("arraydisplay").innerHTML += "<li>" + arraything[i] + "<li>";
+    }
   }
   </script>
   <div id='amicabledisplay'></div>
-  <div>arraytime!</div>
+  <div>
+  	<ul id='arraydisplay'></ul>
+  </div>
+  
 </body>
 </html>
